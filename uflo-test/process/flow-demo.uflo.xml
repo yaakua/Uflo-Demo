@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uflo-process name="flow-demo">
+   <start g="108,287,50,78" name="开始1">
+      <sequence-flow g="-52,-26" name="to 人工任务1" to="人工任务1"/>
+   </start>
+   <task g="270,57,139,52" assignment-type="ProcessPromoter" url="/part1.jsp" task-type="Normal" name="人工任务1" allow-specify-assignee="false">
+      <sequence-flow g="-62,-29" name="to 人工任务2" to="人工任务2"/>
+   </task>
+   <task g="278,226,135,48" assignment-type="ProcessPromoter" url="/count.jsp" task-type="Countersign" name="人工任务2" allow-specify-assignee="false">
+      <sequence-flow g="-28,-22" name="to 分支1" to="分支1"/>
+   </task>
+   <fork g="603,42,54,75" name="分支1">
+      <sequence-flow g="-74,-16" name="to 人工任务3" to="人工任务3"/>
+      <sequence-flow g="-8,-19" name="to 人工任务4" to="人工任务4"/>
+   </fork>
+   <task g="548,245,130,59" assignment-type="Assignee" task-type="Normal" name="人工任务3" allow-specify-assignee="false">
+      <sequence-flow g="-60,-4" name="to 聚合1" to="聚合1"/>
+      <assignee provider-id="uflo.userAssigneeProvider" name="测试用户1" id="user1"/>
+      <assignee provider-id="uflo.userAssigneeProvider" name="测试用户2" id="user2"/>
+   </task>
+   <task g="797,201,132,50" assignment-type="Assignee" task-type="Normal" name="人工任务4" allow-specify-assignee="false">
+      <sequence-flow g="-64,-25" name="to 聚合1" to="聚合1"/>
+      <assignee provider-id="uflo.userAssigneeProvider" name="测试用户1" id="user1"/>
+      <assignee provider-id="uflo.userAssigneeProvider" name="测试用户2" id="user2"/>
+      <assignee provider-id="uflo.userAssigneeProvider" name="测试用户3" id="user3"/>
+   </task>
+   <join g="742,329,61,76" name="聚合1">
+      <sequence-flow g="-24,-4" name="to 人工任务5" to="人工任务5"/>
+   </join>
+   <task g="684,487,144,54" assignment-type="ProcessPromoter" task-type="Normal" name="人工任务5" allow-specify-assignee="false">
+      <sequence-flow g="-40,-24" name="to 结束1" to="结束1"/>
+   </task>
+   <end g="1099,373,68,80" name="结束1" terminate="true"/>
+</uflo-process>

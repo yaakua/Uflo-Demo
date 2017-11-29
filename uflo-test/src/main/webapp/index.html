@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>登录</title>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" type="text/css">
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootbox.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<style type="text/css">
+	body { 
+		background: #fdfdfd;
+		margin: 10px;
+	}
+</style>
+</head>
+<body>
+	<div class="container" style="width:500px;height:300px">
+		<div class="panel panel-default">
+		    <div class="panel-heading">
+		        <h3 class="panel-title">
+		            	用户登录(用户名密码一致即可登录)
+		        </h3>
+		    </div>
+		    <div class="panel-body">
+		        <div style="margin:5px">
+		        	<span style="width:60px;display:inline-block">用户名：</span>
+		        	<span><input type="text" class="form-control username" style="width:300px;display:inline-block"></span>
+		        </div>
+		        <div style="margin:5px">
+		        	<span style="width:60px;display:inline-block">密码：</span>
+		        	<span><input type="password" class="form-control password" style="width:300px;display:inline-block"></span>
+		        </div>
+		    </div>
+		    <div class="panel-footer" style="background: #fdfdfd;height:55px;">
+		    	<button type="button" class="btn btn-default" style="float:right" id="submitButton">登录</button>
+		    </div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	$("#submitButton").click(function(){
+		var username=$(".username").val();
+		if(!username || username.length<2){
+			bootbox.alert("请输入用户名!");
+			return;
+		}
+		var password=$(".password").val();
+		if(!password || password.length<2){
+			bootbox.alert("请输入密码!");
+			return;
+		}
+		$.ajax({
+			type:'POST',
+			data:{username:username,password:password},
+			url:'dologin',
+			success:function(){
+				var url="list.html";
+				window.open(url,"_self");
+			},
+			error:function(){
+				bootbox.alert("登录失败!");
+			}
+		})
+	});
+</script>
+</html>
