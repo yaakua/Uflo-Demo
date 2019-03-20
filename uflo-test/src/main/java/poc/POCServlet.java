@@ -240,8 +240,9 @@ public class POCServlet extends HttpServlet{
 				Item item=new Item();
 				item.setId(businessId);
 				item.setAssignDate(rs.getDate("ASSIGN_DATE_"));
-				item.setInspector(rs.getString("INSPECTOR_"));
-				item.setStore(rs.getString("STORE_"));
+				item.setJobCode(rs.getString("JOB_CODE"));
+				item.setUsername(rs.getString("USER_NAME"));
+				item.setChannel(rs.getString("CHANNEL"));
 				item.setProcessInstanceId(rs.getLong("PROCESSINSTANCE_ID_"));
 				return item;
 			}
@@ -259,22 +260,24 @@ public class POCServlet extends HttpServlet{
 	 */
 	public void startProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String id=req.getParameter("id");
-		String store=req.getParameter("store");
-		String inspector=req.getParameter("inspector");
+		String username=req.getParameter("username");
+		String jobCode=req.getParameter("jobCode");
+		String channel=req.getParameter("channel");
 		
 		Map<String,Object> variables=new HashMap<String,Object>();
-		variables.put("inspector", inspector);
+		variables.put("jobCode", jobCode);
+		variables.put("channel", channel);
 		String loginUser=(String)req.getSession().getAttribute(TestFilter.LOGIN_USERNAME);
 		StartProcessInfo startProcessInfo=new StartProcessInfo(loginUser);
-		startProcessInfo.setBusinessId(id);
+		startProcessInfo.setBusinessId(username);
 		startProcessInfo.setVariables(variables);
 		startProcessInfo.setCompleteStartTask(true);
 		
 		ProcessService ps=(ProcessService)applicationContext.getBean(ProcessService.BEAN_ID);
-		ProcessInstance pi=ps.startProcessByName("poc", startProcessInfo);
+		ProcessInstance pi=ps.startProcessByName("fgs", startProcessInfo);
 		
-		String sql="insert into ITEM(ID_,STORE_,INSPECTOR_,ASSIGN_DATE_,PROCESSINSTANCE_ID_) values(?,?,?,?,?)";
-		jdbcTemplate.update(sql, new Object[]{id,store,inspector,new Date(),pi.getId()});
+		String sql="insert into ITEM(ID,USER_NAME,JOB_CODE,CHANNEL,ASSIGN_DATE_,PROCESSINSTANCE_ID_) values(?,?,?,?,?)";
+		jdbcTemplate.update(sql, new Object[]{id,username,jobCode,channel,new Date(),pi.getId()});
 	}
 	
 	private void writeObjectToJson(HttpServletResponse resp,Object obj) throws ServletException, IOException{

@@ -9,7 +9,7 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/bootbox.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-<title>质检</title>
+<title>审核</title>
 <style type="text/css">
 	body{
 		margin: 10px;
@@ -20,7 +20,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
-           	质检结论：
+           	审核结论：
         </h3>
     </div>
     <div class="panel-body">

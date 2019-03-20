@@ -7,8 +7,9 @@
 	<packaging>war</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
 	</properties>
-	<repositories>
+	<!--<repositories>
 		<repository>
 			<id>bsdn-maven-repository</id>
 			<url>http://nexus.bsdn.org/content/groups/public/</url>
@@ -25,12 +26,12 @@
 			<name>Dorado Snapshots Repository</name>
 			<url>http://nexus.bsdn.org/content/repositories/dorado_snapshots</url>
 		</snapshotRepository>
-	</distributionManagement>
+	</distributionManagement>-->
 	<dependencies>
 		<dependency>
 			<groupId>com.bstek.uflo</groupId>
 			<artifactId>uflo-console</artifactId>
-			<version>2.0.5-SNAPSHOT</version>
+			<version>2.1.4</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-dbcp</groupId>

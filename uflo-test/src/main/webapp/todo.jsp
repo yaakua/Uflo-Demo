@@ -28,8 +28,10 @@
     		<table class="table table-bordered" id="todoTable">
     			<thead>
     				<tr>
-    					<td style="width:290px">申请件编号</td>
-    					<td>门店</td>
+    					<td style="width:290px">申请编号</td>
+    					<td>姓名</td>
+    					<td>职级</td>
+    					<td>渠道</td>
     					<td style="width:120px">分派日期</td>
     					<td style="width:100px">质检人员</td>
     					<td style="width:200px">操作</td>
@@ -43,8 +45,10 @@
     		<table class="table table-bordered" id="historyTable">
     			<thead>
     				<tr>
-    					<td style="width:290px">申请件编号</td>
-    					<td>门店</td>
+    					<td style="width:290px">申请编号</td>
+						<td>姓名</td>
+						<td>职级</td>
+						<td>渠道</td>
     					<td style="width:120px">分派日期</td>
     					<td style="width:100px">质检人员</td>
     					<td style="width:200px">操作</td>
@@ -66,7 +70,9 @@ $.ajax({
 			var tr=$("<tr></tr>");
 			todoBody.append(tr);
 			tr.append("<td>"+item.id+"</td>");
-			tr.append("<td>"+item.store+"</td>");
+			tr.append("<td>"+item.username+"</td>");
+			tr.append("<td>"+item.jobCode+"</td>");
+			tr.append("<td>"+item.channel+"</td>");
 			tr.append("<td>"+item.assignDate+"</td>");
 			tr.append("<td>"+item.inspector+"</td>");
 			var td=$("<td></td>");
@@ -97,7 +103,9 @@ $.ajax({
 			var tr=$("<tr></tr>");
 			todoBody.append(tr);
 			tr.append("<td>"+item.id+"</td>");
-			tr.append("<td>"+item.store+"</td>");
+            tr.append("<td>"+item.username+"</td>");
+            tr.append("<td>"+item.jobCode+"</td>");
+            tr.append("<td>"+item.channel+"</td>");
 			tr.append("<td>"+item.assignDate+"</td>");
 			tr.append("<td>"+item.inspector+"</td>");
 			var td=$("<td></td>");

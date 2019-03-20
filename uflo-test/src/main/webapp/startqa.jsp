@@ -21,32 +21,41 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
-           	开启申请件流程
+           	人员入司流程申请
         </h3>
     </div>
     <div class="panel-body">
     	<div>
-	        <span>申请件编号：</span>
+	        <span>申请编号：</span>
 	        <span>
 	        	<input type="text" class="form-control" id="id" value="<%=UUID.randomUUID().toString() %>" style="display:inline-block;width:300px">
 	        </span>
     	</div>
     	<div style="margin-top: 20px">
-	        <span>门店：</span>
+	        <span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</span>
 	        <span>
-	        	<input type="text" class="form-control" id="store" value="上海浦东大道营业部" style="display:inline-block;width:300px">
+	        	<input type="text" class="form-control" id="username" value="" style="display:inline-block;width:300px">
 	        </span>
     	</div>
     	<div style="margin-top: 20px">
-	        <span>指定质检人员：</span>
+	        <span>职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;级：</span>
 	        <span>
-	        	<select class="form-control" id="inspector" style="display:inline-block;width:300px">
-	        		<option>user1</option>
-	        		<option>user2</option>
-	        		<option>user3</option>
+	        	<select class="form-control" id="jobCode" style="display:inline-block;width:300px">
+	        		<option>业务员</option>
+	        		<option>高级业务员</option>
+	        		<option>渠道总监</option>
 	        	</select>
 	        </span>
     	</div>
+		<div style="margin-top: 20px">
+			<span>所属渠道：</span>
+			<span>
+	        	<select class="form-control" id="channel" style="display:inline-block;width:300px">
+	        		<option>个险渠道</option>
+	        		<option>车商渠道</option>
+	        	</select>
+	        </span>
+		</div>
     </div>
     <div class="panel-footer" style="background: #fdfdfd">
     	<button type="button" class="btn btn-default" id="startBtn">开启流程</button>
@@ -56,14 +65,14 @@
 	$("#startBtn").click(function(){
 		bootbox.confirm("真的要开启？",function(result){
 			if(!result)return;
-			var id=$("#id").val();
-			var store=$("#store").val();
-			var inspector=$("#inspector").val();
+			var username=$("#username").val();
+			var jobCode=$("#jobCode").val();
+			var channel=$("#channel").val();
 			
 			$.ajax({
 				url:"poc?method=startProcess",
 				type:'POST',
-				data:{id:id,store:store,inspector:inspector},
+				data:{username:username,store:jobCode,inspector:channel},
 				success:function(){
 					$("#startBtn").addClass("disabled");
 					bootbox.confirm("开启流程操作成功,是否要跳转到待办页面？",function(){

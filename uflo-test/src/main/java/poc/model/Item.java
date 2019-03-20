@@ -1,14 +1,7 @@
 package poc.model;
 
+import javax.persistence.*;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Transient;
 
 /**
  * @author Jacky.gao
@@ -17,18 +10,37 @@ import javax.persistence.Transient;
 @Entity
 @Table(name="ITEM")
 public class Item {
+	/**
+	 * 编号
+	 */
 	@Id
-	@Column(name="ID_",length=60)
-	private String id;//申请件编号
-	
-	@Column(name="STORE_",length=100)
-	private String store;//门店
-	
+	@Column(name="ID",length=60)
+	private String id;
+
+	/**
+	 * 姓名
+	 */
+	@Column(name="USER_NAME",length=100)
+	private String username;
+
+	/**
+	 * 职级
+	 */
+	@Column(name="JOB_CODE",length=20)
+	private String jobCode;
+
+	/**
+	 * 渠道
+	 */
+	@Column(name="CHANNEL",length=20)
+	private String channel;
+
+	/**
+	 *
+	 */
 	@Column(name="ASSIGN_DATE_")
 	private Date assignDate;//分派日期
-	
-	@Column(name="INSPECTOR_")
-	private String inspector;//质检人员
+
 	
 	@Column(name="ERROR_CODE_",length=30)
 	@Enumerated(EnumType.STRING)
@@ -45,10 +57,7 @@ public class Item {
 	
 	@Transient
 	private String taskName;
-	
-	
 
-	
 	public String getId() {
 		return id;
 	}
@@ -57,12 +66,28 @@ public class Item {
 		this.id = id;
 	}
 
-	public String getStore() {
-		return store;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setStore(String store) {
-		this.store = store;
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getJobCode() {
+		return jobCode;
+	}
+
+	public void setJobCode(String jobCode) {
+		this.jobCode = jobCode;
+	}
+
+	public String getChannel() {
+		return channel;
+	}
+
+	public void setChannel(String channel) {
+		this.channel = channel;
 	}
 
 	public Date getAssignDate() {
@@ -81,12 +106,12 @@ public class Item {
 		this.errorCode = errorCode;
 	}
 
-	public String getInspector() {
-		return inspector;
+	public long getProcessInstanceId() {
+		return processInstanceId;
 	}
 
-	public void setInspector(String inspector) {
-		this.inspector = inspector;
+	public void setProcessInstanceId(long processInstanceId) {
+		this.processInstanceId = processInstanceId;
 	}
 
 	public long getTaskId() {
@@ -111,13 +136,5 @@ public class Item {
 
 	public void setTaskName(String taskName) {
 		this.taskName = taskName;
-	}
-
-	public long getProcessInstanceId() {
-		return processInstanceId;
-	}
-
-	public void setProcessInstanceId(long processInstanceId) {
-		this.processInstanceId = processInstanceId;
 	}
 }

@@ -30,11 +30,10 @@ public class PocAssignProvider implements AssigneeProvider {
 		pageQuery.setPageSize(30);
 		pageQuery.setResult(list);
 		
-		list.add(new Entity("CreditLeader","信审组长"));
-		list.add(new Entity("QADirector","质检主管"));
-		list.add(new Entity("CreditDirector","信审主管"));
-		list.add(new Entity("QAManager","质检经理"));
-		list.add(new Entity("CreditManager","信审经理"));
+		list.add(new Entity("branchAuditor","分公司审核人员"));
+		list.add(new Entity("headAuditor","总公司审核人员"));
+		list.add(new Entity("branchManagerAuditor","分公司领导审核人员"));
+		list.add(new Entity("branchUser","分公司录入人员"));
 		pageQuery.setRecordCount(list.size());
 	}
 
