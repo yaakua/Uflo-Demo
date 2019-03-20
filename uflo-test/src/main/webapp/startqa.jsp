@@ -65,6 +65,7 @@
 	$("#startBtn").click(function(){
 		bootbox.confirm("真的要开启？",function(result){
 			if(!result)return;
+			var id=$("#id").val();
 			var username=$("#username").val();
 			var jobCode=$("#jobCode").val();
 			var channel=$("#channel").val();
@@ -72,7 +73,7 @@
 			$.ajax({
 				url:"poc?method=startProcess",
 				type:'POST',
-				data:{username:username,store:jobCode,inspector:channel},
+				data:{id:id,username:username,jobCode:jobCode,channel:channel},
 				success:function(){
 					$("#startBtn").addClass("disabled");
 					bootbox.confirm("开启流程操作成功,是否要跳转到待办页面？",function(){

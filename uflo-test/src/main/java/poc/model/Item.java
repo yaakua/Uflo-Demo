@@ -14,7 +14,7 @@ public class Item {
 	 * 编号
 	 */
 	@Id
-	@Column(name="ID",length=60)
+	@Column(name="ID_",length=60)
 	private String id;
 
 	/**

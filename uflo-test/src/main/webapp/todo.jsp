@@ -33,7 +33,6 @@
     					<td>职级</td>
     					<td>渠道</td>
     					<td style="width:120px">分派日期</td>
-    					<td style="width:100px">质检人员</td>
     					<td style="width:200px">操作</td>
     				</tr>
     			</thead>
@@ -50,7 +49,6 @@
 						<td>职级</td>
 						<td>渠道</td>
     					<td style="width:120px">分派日期</td>
-    					<td style="width:100px">质检人员</td>
     					<td style="width:200px">操作</td>
     				</tr>
     			</thead>
@@ -74,11 +72,10 @@ $.ajax({
 			tr.append("<td>"+item.jobCode+"</td>");
 			tr.append("<td>"+item.channel+"</td>");
 			tr.append("<td>"+item.assignDate+"</td>");
-			tr.append("<td>"+item.inspector+"</td>");
 			var td=$("<td></td>");
 			tr.append(td);
 			if(item.taskId){
-				var url=item.url+"?businessId="+item.id+"&taskId="+item.taskId+"&taskName="+item.taskName;
+				var url="audit.jsp?businessId="+item.id+"&taskId="+item.taskId+"&taskName="+item.taskName;
 				url=encodeURI(encodeURI(url));
 				var processTask=$("<span><a href='"+url+"'>处理</a></span>");
 				td.append(processTask);
@@ -107,7 +104,6 @@ $.ajax({
             tr.append("<td>"+item.jobCode+"</td>");
             tr.append("<td>"+item.channel+"</td>");
 			tr.append("<td>"+item.assignDate+"</td>");
-			tr.append("<td>"+item.inspector+"</td>");
 			var td=$("<td></td>");
 			tr.append(td);
 			var detail=$("<span style='margin-left:5px'><a href='detail.jsp?businessId="+item.id+"' target='_blank'>详情</a></span>")

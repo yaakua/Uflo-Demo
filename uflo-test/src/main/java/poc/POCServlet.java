@@ -234,7 +234,7 @@ public class POCServlet extends HttpServlet{
 	}
 	
 	private Item queryItem(final String businessId){
-		String sql="select ID_,STORE_,ASSIGN_DATE_,INSPECTOR_,PROCESSINSTANCE_ID_ from ITEM where ID_=?";
+		String sql="select ID_,USER_NAME,JOB_CODE,CHANNEL,ASSIGN_DATE_,PROCESSINSTANCE_ID_ from ITEM where ID_=?";
 		Item item=jdbcTemplate.queryForObject(sql, new Object[]{businessId},new RowMapper<Item>(){
 			public Item mapRow(ResultSet rs, int rowNum) throws SQLException {
 				Item item=new Item();
@@ -269,14 +269,14 @@ public class POCServlet extends HttpServlet{
 		variables.put("channel", channel);
 		String loginUser=(String)req.getSession().getAttribute(TestFilter.LOGIN_USERNAME);
 		StartProcessInfo startProcessInfo=new StartProcessInfo(loginUser);
-		startProcessInfo.setBusinessId(username);
+		startProcessInfo.setBusinessId(id);
 		startProcessInfo.setVariables(variables);
 		startProcessInfo.setCompleteStartTask(true);
 		
 		ProcessService ps=(ProcessService)applicationContext.getBean(ProcessService.BEAN_ID);
-		ProcessInstance pi=ps.startProcessByName("fgs", startProcessInfo);
+		ProcessInstance pi=ps.startProcessByName("入司申请流程", startProcessInfo);
 		
-		String sql="insert into ITEM(ID,USER_NAME,JOB_CODE,CHANNEL,ASSIGN_DATE_,PROCESSINSTANCE_ID_) values(?,?,?,?,?)";
+		String sql="insert into ITEM(ID_,USER_NAME,JOB_CODE,CHANNEL,ASSIGN_DATE_,PROCESSINSTANCE_ID_) values(?,?,?,?,?,?)";
 		jdbcTemplate.update(sql, new Object[]{id,username,jobCode,channel,new Date(),pi.getId()});
 	}
 	
