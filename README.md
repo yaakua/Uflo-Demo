@@ -4,3 +4,4 @@ A demo project for Uflo framwork,which is a lightweight workflow framework make 
 
 ## 具体开发参见代码当中的 README.md 需要点uflo-test文件夹进去看
 ## 图例
+![入司申请流程示例](1.png)
