@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bstek.uflo.model.task.TaskState;
 import org.apache.commons.lang.StringUtils;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.SerializationConfig;
@@ -88,21 +89,17 @@ public class POCServlet extends HttpServlet{
 		jdbcTemplate.update(sql,new Object[]{UUID.randomUUID().toString(),loginUser,feedbackType,desc,businessId});
 		
 		String path=null;
-		if(taskName.startsWith("任务4")){
-			if(feedbackType.equals(FeedbackType.confirm.name())){
-				path="to 结束";
-			}else{
-				path="to 分支";
-			}
-		}
+		/*if(taskName.startsWith("会签")){
+			path="to 结束";
+		}*/
 		
 		TaskService taskService=(TaskService)applicationContext.getBean(TaskService.BEAN_ID);
-		taskService.start(taskId);
-		if(path==null){
-			taskService.complete(taskId);			
-		}else{
-			taskService.complete(taskId,path);						
+		Task task = taskService.getTask(taskId);
+		//只有创建状态才开启
+		if(task.getState().equals(TaskState.Created) || task.getState().equals(TaskState.Reserved)){
+			taskService.start(taskId);
 		}
+		taskService.complete(taskId);
 	}
 	
 	/**

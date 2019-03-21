@@ -20,6 +20,7 @@ public class EndNodeEventHandler implements NodeEventHandler {
 	}
 
 	public void leave(Node node, ProcessInstance processInstance,Context context) {
+
 	}
 	
 	public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
